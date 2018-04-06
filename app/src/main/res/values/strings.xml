@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AmbienTours</string>
+    <string name="ambientours">AmbienTours</string>
+    <string name="begin_tour">Begin Tour</string>
+    <string name="gt">GT</string>
+    <string name="at">at</string>
 </resources>
