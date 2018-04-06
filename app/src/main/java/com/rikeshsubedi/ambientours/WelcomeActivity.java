@@ -20,7 +20,6 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gotoOptions = new Intent(WelcomeActivity.this, InterestSelectionActivity.class);
                 startActivity(gotoOptions);
-                finish();
             }
         });
     }

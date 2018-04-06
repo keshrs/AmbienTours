@@ -4,4 +4,12 @@
     <string name="begin_tour">Begin Tour</string>
     <string name="gt">GT</string>
     <string name="at">at</string>
+    <string name="lets_tour">Let\'s Tour!</string>
+    <string name="select_prompt">Select your tour interests:</string>
+    <string name="history">History</string>
+    <string name="art_and_culture">Art and Culture</string>
+    <string name="restaurants_and_commerce">Restaurants and Commerce</string>
+    <string name="nature">Nature</string>
+    <string name="entertainment_venues">Entertainment Venues</string>
+    <string name="top_attractions">Top Tourist Attractions</string>
 </resources>
