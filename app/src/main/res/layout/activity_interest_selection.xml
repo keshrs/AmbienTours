@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".InterestSelectionActivity">
 
+    
+    
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/v_flipper"/>
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="367dp"
@@ -13,7 +22,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="[ BANNER IMAGE PENDING ]"
+        android:text=" "
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +31,9 @@
 
     <Button
         android:id="@+id/btnTour"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="90dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -32,7 +41,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chkTouristAttractions" />
+        app:layout_constraintTop_toBottomOf="@+id/chkTouristAttractions"
+        style="@style/button_style" />
 
     <TextView
         android:id="@+id/textView5"
@@ -40,7 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="6dp"
         android:text="@string/select_prompt"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

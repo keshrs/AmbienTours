@@ -14,4 +14,29 @@
         <!--<item name="android:windowFullscreen">true</item>-->
     </style>
 
+
+    //button bg blue
+    <style name="button_style">
+        <item name="android:background">@drawable/button_bg_blue</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">#EAAA00</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    //button with bg white
+    <style name="button_style2">
+        <item name="android:background">@drawable/button_bg_white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
 </resources>
