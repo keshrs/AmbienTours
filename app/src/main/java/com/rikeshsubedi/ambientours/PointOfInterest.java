@@ -8,6 +8,7 @@ package com.rikeshsubedi.ambientours;
 public class PointOfInterest {
 
     // TODO: implement local variables containing location information and data
+    LocationType type;
     String name;
     private int fileID;
 
@@ -18,6 +19,7 @@ public class PointOfInterest {
 
     PointOfInterest() {
         this.name = "The Moon";
+        this.type = LocationType.NATURE;
         this.fileID = R.raw.twomoons;
     }
 }
