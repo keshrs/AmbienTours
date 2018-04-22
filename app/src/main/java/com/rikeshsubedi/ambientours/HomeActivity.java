@@ -36,11 +36,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         /* Below is just testing code */
-        String text = isArt + " " + isEntertainment + " " + isHistory + " " + isNature + " "
-                + isCommerce + " " + isTourist;
-        TextView tvTest = findViewById(R.id.tvTest);
-        tvTest.setText(text);
-
         PointOfInterest moon = new PointOfInterest();   // Background music, not location
         playback = MediaPlayer.create(HomeActivity.this, moon.getLocationSoundID());
         playback.setLooping(true);
