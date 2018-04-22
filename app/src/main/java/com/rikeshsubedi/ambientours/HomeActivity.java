@@ -36,4 +36,13 @@ public class HomeActivity extends AppCompatActivity {
         TextView tvTest = findViewById(R.id.tvTest);
         tvTest.setText(text);
     }
+
+
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }

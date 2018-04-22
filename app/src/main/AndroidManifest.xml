@@ -21,7 +21,9 @@
         <activity
             android:name=".InterestSelectionActivity"
             android:parentActivityName=".WelcomeActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:parentActivityName=".InterestSelectionActivity" />
     </application>
 
 </manifest>
