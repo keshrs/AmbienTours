@@ -18,8 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InterestSelectionActivity"
-                  android:parentActivityName=".WelcomeActivity"></activity>
+        <activity
+            android:name=".InterestSelectionActivity"
+            android:parentActivityName=".WelcomeActivity" />
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>

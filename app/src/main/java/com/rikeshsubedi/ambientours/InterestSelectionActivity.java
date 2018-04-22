@@ -25,6 +25,10 @@ public class InterestSelectionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method to set up images in the ViewFlipper and set its parameters.
+     * @param image to add to the flipper.
+     */
     public void flipperImages(int image) {
         ImageView imageView = new ImageView(this);
         imageView.setBackgroundResource(image);
