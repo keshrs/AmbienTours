@@ -1,6 +1,8 @@
 package com.rikeshsubedi.ambientours;
 
 import android.content.Intent;
+import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -14,6 +16,8 @@ public class HomeActivity extends AppCompatActivity {
     boolean isNature = false;
     boolean isCommerce = false;
     boolean isTourist = false;
+
+    MediaPlayer playback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +35,28 @@ public class HomeActivity extends AppCompatActivity {
             isTourist = intentBundle.getBoolean("tourist");
         }
 
+        /* Below is just testing code */
         String text = isArt + " " + isEntertainment + " " + isHistory + " " + isNature + " "
                 + isCommerce + " " + isTourist;
         TextView tvTest = findViewById(R.id.tvTest);
         tvTest.setText(text);
+
+        PointOfInterest moon = new PointOfInterest();   // Background music, not location
+        playback = MediaPlayer.create(HomeActivity.this, moon.getLocationSoundID());
+        playback.setLooping(true);
+        playback.start();
+
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        playback.stop();
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
+        playback.stop();
         finish();
         return true;
     }
