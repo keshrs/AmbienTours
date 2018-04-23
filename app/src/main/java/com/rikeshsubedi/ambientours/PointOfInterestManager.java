@@ -62,6 +62,9 @@ public class PointOfInterestManager {
         this.location = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
+
+
+        /* In current implementation, Places API is not used and neither is the request queue */
         buildRequestQueue();
     }
 
@@ -70,7 +73,7 @@ public class PointOfInterestManager {
      * @param type type of place to query for.
      * @return formatted String representation of the query.
      */
-    public String buildQuery(String type) {
+    private String buildQuery(String type) {
         StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         sb.append("location=").append(latitude).append(",").append(longitude);
         sb.append("&radius=" + searchRadius);

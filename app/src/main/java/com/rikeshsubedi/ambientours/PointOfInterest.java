@@ -1,6 +1,8 @@
 package com.rikeshsubedi.ambientours;
 
 
+import java.util.Set;
+
 /**
  * Object representing a location of interest for a tourist.
  * @version 1.0
@@ -9,9 +11,12 @@ package com.rikeshsubedi.ambientours;
 public class PointOfInterest {
 
     // TODO: implement local variables containing location information and data
-    LocationType type;
-    String name;
+    private Set<LocationType> type;
+    private String name;
     private int fileID;
+    private double latitude;
+    private double longitude;
+    private double radius;
 
     public int getLocationSoundID() {
         return fileID;
@@ -20,7 +25,7 @@ public class PointOfInterest {
 
     PointOfInterest() {
         this.name = "The Moon";
-        this.type = LocationType.NATURE;
+        this.type.add(LocationType.NATURE);
         this.fileID = R.raw.twomoons;
     }
 }

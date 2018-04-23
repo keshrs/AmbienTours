@@ -68,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         btnUpdateLocation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 updateLocation();
+                poiMan.update(location);
                 Toast.makeText(HomeActivity.this, "Lat: " + latitude + " Long: " + longitude, Toast.LENGTH_SHORT).show();
             }
         });
