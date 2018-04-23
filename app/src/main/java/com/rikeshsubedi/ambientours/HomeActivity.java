@@ -31,18 +31,9 @@ public class HomeActivity extends AppCompatActivity {
 
     final int REQUEST_CODE_FINE_GPS = 19;
 
-    /* These variables contain the state of the tour parameters */
-    boolean isArt = false;
-    boolean isEntertainment = false;
-    boolean isHistory = false;
-    boolean isNature = false;
-    boolean isCommerce = false;
-    boolean isTourist = false;
+    PointOfInterestManager poiMan;
 
     MediaPlayer playback;
-
-//    PriorityQueue<PointOfInterest> primedPOIs;
-    HashSet<PointOfInterest> visitedPOIs = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +55,8 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle intentBundle = intent.getExtras();
-        if (intentBundle != null) {
-            isArt = intentBundle.getBoolean("art");
-            isEntertainment = intentBundle.getBoolean("entertainment");
-            isHistory = intentBundle.getBoolean("history");
-            isNature = intentBundle.getBoolean("nature");
-            isCommerce = intentBundle.getBoolean("commerce");
-            isTourist = intentBundle.getBoolean("tourist");
-        }
+
+        poiMan = new PointOfInterestManager(location, intentBundle);
 
         /* Below is just testing code which starts background music. */
         PointOfInterest moon = new PointOfInterest();   // Background music, not location
@@ -133,13 +118,11 @@ public class HomeActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay!
                     Log.v("PERMISSION", "LOCATION PERMISSION GRANTED");
 
                 } else {
                     playback.stop();
                     finish();
-                    // permission denied, boo!
                 }
             }
         }

@@ -1,9 +1,10 @@
 package com.rikeshsubedi.ambientours;
 
+
 /**
  * Object representing a location of interest for a tourist.
  * @version 1.0
- * @author Rikesh Subedi
+ * @author Rikesh Subedi (keshrs)
  */
 public class PointOfInterest {
 
