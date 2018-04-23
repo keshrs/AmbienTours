@@ -1,6 +1,7 @@
 package com.rikeshsubedi.ambientours;
 
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class PointOfInterest {
 
     // TODO: implement local variables containing location information and data
     private Set<LocationType> type;
-    private String name;
+    private OurPlaces place;
     private int fileID;
     private double latitude;
     private double longitude;
@@ -25,9 +26,18 @@ public class PointOfInterest {
 
 
     PointOfInterest() {
-        this.name = "The Moon";
-        type = new HashSet<>();
+        this.place = OurPlaces.MOON;
+        this.type = new HashSet<>();
         this.type.add(LocationType.NATURE);
-        this.fileID = R.raw.twomoons;
+        this.fileID = place.getFileID();
+    }
+
+    PointOfInterest(OurPlaces place, double latitude, double longitude, LocationType... type) {
+        this.place = place;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.type = new HashSet<>();
+        this.type.addAll(Arrays.asList(type));
+        this.fileID = place.getFileID();
     }
 }
