@@ -5,16 +5,16 @@ package com.rikeshsubedi.ambientours;
  * @author Rikesh Subedi
  */
 public enum LocationType {
-    ART ("Art and Culture"),
-    HISTORY ("History"),
-    COMMERCE ("Restaurants and Commerce"),
-    NATURE ("Nature"),
-    ENTERTAINMENT ("Entertainment"),
-    TOURIST ("Top Tourist Attractions");
+    ART ("artNotification.wav"),
+    HISTORY ("historyNotification.wav"),
+    COMMERCE ("commerceNotification.wav"),
+    NATURE ("natureNotification.wav"),
+    ENTERTAINMENT ("entertainmentNotification.wav"),
+    TOURIST ("touristNotification.wav");
 
-    private final String title;
+    private final String filename;
 
-    LocationType(String title) {
-        this.title = title;
+    LocationType(String filename) {
+        this.filename = filename;
     }
 }
