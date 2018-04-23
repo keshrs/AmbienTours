@@ -1,6 +1,7 @@
 package com.rikeshsubedi.ambientours;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -25,6 +26,7 @@ public class PointOfInterest {
 
     PointOfInterest() {
         this.name = "The Moon";
+        type = new HashSet<>();
         this.type.add(LocationType.NATURE);
         this.fileID = R.raw.twomoons;
     }
