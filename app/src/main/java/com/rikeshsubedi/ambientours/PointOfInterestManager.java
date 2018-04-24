@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class PointOfInterestManager {
     static private PriorityQueue<OurPlaces> primedPOIs;
-    static private HashSet<OurPlaces> visitedPOIs = new HashSet<>();
+    static private HashSet<OurPlaces> visitedPOIs;
 
     private LinkedList<String> requestQueue;    // For use with Google Places API
 
@@ -46,6 +46,7 @@ public class PointOfInterestManager {
             isTourist = extras.getBoolean("tourist");
         }
         primedPOIs = new PriorityQueue<>();
+        visitedPOIs = new HashSet<>();
         update(location);
     }
 
@@ -74,25 +75,29 @@ public class PointOfInterestManager {
                     canAdd = placeType.contains(LocationType.ART);
                 }
                 if (isEntertainment) {
-                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                    canAdd = canAdd || placeType.contains(LocationType.ENTERTAINMENT);
                 }
                 if (isHistory) {
-                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                    canAdd = canAdd || placeType.contains(LocationType.HISTORY);
                 }
                 if (isNature) {
-                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                    canAdd = canAdd || placeType.contains(LocationType.NATURE);
                 }
                 if (isCommerce) {
-                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                    canAdd = canAdd || placeType.contains(LocationType.COMMERCE);
                 }
                 if (isTourist) {
-                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                    canAdd = canAdd || placeType.contains(LocationType.TOURIST);
                 }
+
+                if (primedPOIs.contains(place)) canAdd = false; // Do not add multiple to queue
 
                 if (canAdd) {
                     primedPOIs.add(place);
+                    canAdd = false;
                 }
-                canAdd = false;
+            } else {
+                if (primedPOIs.contains(place)) primedPOIs.remove(place);
             }
         }
 
@@ -193,11 +198,11 @@ public class PointOfInterestManager {
     }
 
 
-    public static PriorityQueue<OurPlaces> getPrimedPOIs() {
+    public PriorityQueue<OurPlaces> getPrimedPOIs() {
         return primedPOIs;
     }
 
-    public static HashSet<OurPlaces> getVisitedPOIs() {
+    public HashSet<OurPlaces> getVisitedPOIs() {
         return  visitedPOIs;
     }
 

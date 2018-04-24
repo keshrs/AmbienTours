@@ -32,8 +32,12 @@ public class HomeActivity extends AppCompatActivity {
     final int REQUEST_CODE_FINE_GPS = 19;
 
     PointOfInterestManager poiMan;
+    PriorityQueue<OurPlaces> availablePOIs;
 
-    MediaPlayer playback;
+    private final int maxVolume = 100;
+    private float currVol =  (float)(1 - (Math.log(maxVolume-50) / Math.log(maxVolume)));
+    MediaPlayer music;
+    MediaPlayer localSounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +61,14 @@ public class HomeActivity extends AppCompatActivity {
         Bundle intentBundle = intent.getExtras();
 
         poiMan = new PointOfInterestManager(location, intentBundle);
+        availablePOIs = new PriorityQueue<>();
 
         /* Below is just testing code which starts background music. */
         PointOfInterest moon = new PointOfInterest();   // Background music, not location
-        playback = MediaPlayer.create(HomeActivity.this, moon.getLocationSoundID());
-        playback.setLooping(true);
-        playback.start();
+        music = MediaPlayer.create(HomeActivity.this, moon.getLocationSoundID());
+        music.setLooping(true);
+        music.setVolume(currVol, currVol);
+        music.start();
 
         Button btnUpdateLocation = findViewById(R.id.btnUpdateLocation);
         btnUpdateLocation.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +78,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        Button btnNextPOI = findViewById(R.id.btnNextPOI);
+        btnNextPOI.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                availablePOIs = poiMan.getPrimedPOIs();
+                if (!availablePOIs.isEmpty()) {
+                    OurPlaces place = availablePOIs.poll();
+                    music = MediaPlayer.create(HomeActivity.this, place.getFileID());
+                    music.setVolume(maxVolume, maxVolume);
+                    music.start();
+                    Toast.makeText(HomeActivity.this, "" + place, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HomeActivity.this, "Failed to find a POI.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         /* Below we want to query for nearby places using Google Places API. */
 
 
@@ -93,20 +113,23 @@ public class HomeActivity extends AppCompatActivity {
             longitude = location.getLongitude();
             latitude = location.getLatitude();
         }
-        poiMan.update(location);
+        if (poiMan != null) {
+            poiMan.update(location);
+            availablePOIs = poiMan.getPrimedPOIs();
+        }
     }
 
     @Override
     public void onBackPressed() {
         locationTracker.stop();
-        playback.stop();
+        music.stop();
         super.onBackPressed();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         locationTracker.stop();
-        playback.stop();
+        music.stop();
         finish();
         return true;
     }
@@ -122,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
                     Log.v("PERMISSION", "LOCATION PERMISSION GRANTED");
 
                 } else {
-                    playback.stop();
+                    music.stop();
                     finish();
                 }
             }
