@@ -81,12 +81,11 @@ public class HomeActivity extends AppCompatActivity {
         Button btnNextPOI = findViewById(R.id.btnNextPOI);
         btnNextPOI.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                availablePOIs = poiMan.getPrimedPOIs();
                 if (!availablePOIs.isEmpty()) {
                     OurPlaces place = availablePOIs.poll();
-                    music = MediaPlayer.create(HomeActivity.this, place.getFileID());
-                    music.setVolume(maxVolume, maxVolume);
-                    music.start();
+                    localSounds = MediaPlayer.create(HomeActivity.this, place.getFileID());
+                    localSounds.setVolume(maxVolume, maxVolume);
+                    localSounds.start();
                     Toast.makeText(HomeActivity.this, "" + place, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(HomeActivity.this, "Failed to find a POI.", Toast.LENGTH_SHORT).show();
@@ -122,6 +121,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         locationTracker.stop();
+        localSounds.stop();
         music.stop();
         super.onBackPressed();
     }
@@ -129,6 +129,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         locationTracker.stop();
+        localSounds.stop();
         music.stop();
         finish();
         return true;

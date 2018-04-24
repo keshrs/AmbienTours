@@ -13,13 +13,13 @@ import java.util.Set;
 public enum OurPlaces {
     FIFTH_STREET_BRIDGE (R.raw.fifthstbridge, 33.776862, -84.390851, 30,
             new HashSet<>(Arrays.asList(LocationType.TOURIST, LocationType.NATURE))),
-    TECHNOLOGY_SQUARE (R.raw.techsquare, 33.776837, -84.388950, 30,
+    TECHNOLOGY_SQUARE (R.raw.techsquare, 33.776353, -84.388950, 120,
             new HashSet<>(Arrays.asList(LocationType.TOURIST, LocationType.COMMERCE))),
-    TSRB (R.raw.tsrb, 33.777356, -84.389988, 30,
+    TSRB (R.raw.tsrb, 33.777356, -84.389988, 60,
             new HashSet<>(Arrays.asList(LocationType.TOURIST, LocationType.HISTORY))),
-    BARNES_AND_NOBLE (R.raw.barnesandnoble, 33.776353, -84.388483, 30,
+    BARNES_AND_NOBLE (R.raw.barnesandnoble, 33.776353, -84.388483, 50,
             new HashSet<>(Arrays.asList(LocationType.TOURIST, LocationType.COMMERCE))),
-    SCHELLER (R.raw.scheller, 33.776280, -84.387774, 30,
+    SCHELLER (R.raw.scheller, 33.776280, -84.387774, 60,
             new HashSet<>(Arrays.asList(LocationType.TOURIST))),
     MOON (R.raw.twomoons, 0, 0, 0, new HashSet<LocationType>());
 
