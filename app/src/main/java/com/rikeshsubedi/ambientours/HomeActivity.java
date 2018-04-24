@@ -99,23 +99,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        String[] listOfPOI = {"Tech Tower",
-                              "Highland Bakery",
-                              "Weber SSGT",
-                              "Skiles: LMC & MATH",
-                              "Tech Green",
-                              "GT Student Center",
-                              "Ferst Center",
-                              "College of Design",
-                              "Tech Square Research Building",
-                              "Clough U.L.C",
-                              "Scheller College of Business"};
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listOfPOI);
+
+        OurPlaces[] listOfPOI = new OurPlaces[availablePOIs.size()];
+        listOfPOI = availablePOIs.toArray(listOfPOI);
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfPOI);
         listViewOfPOI = findViewById(R.id.listOfPOI);
         listViewOfPOI.setAdapter(adapter);
+
+
         /* Below we want to query for nearby places using Google Places API. */
-
-
     }
 
     /**
@@ -132,6 +124,12 @@ public class HomeActivity extends AppCompatActivity {
         if (poiMan != null) {
             poiMan.update(location);
             availablePOIs = poiMan.getPrimedPOIs();
+
+            OurPlaces[] listOfPOI = new OurPlaces[availablePOIs.size()];
+            listOfPOI = availablePOIs.toArray(listOfPOI);
+            ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfPOI);
+            listViewOfPOI = findViewById(R.id.listOfPOI);
+            listViewOfPOI.setAdapter(adapter);
         }
     }
 
