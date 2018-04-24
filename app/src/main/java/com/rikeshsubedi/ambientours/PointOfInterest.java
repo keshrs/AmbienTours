@@ -1,6 +1,8 @@
 package com.rikeshsubedi.ambientours;
 
 
+import android.location.Location;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +18,7 @@ public class PointOfInterest {
     private Set<LocationType> type;
     private OurPlaces place;
     private int fileID;
-    private double latitude;
-    private double longitude;
+
     private double radius;
 
     public int getLocationSoundID() {
@@ -32,10 +33,9 @@ public class PointOfInterest {
         this.fileID = place.getFileID();
     }
 
-    PointOfInterest(OurPlaces place, double latitude, double longitude, LocationType... type) {
+    PointOfInterest(OurPlaces place, LocationType... type) {
         this.place = place;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.radius = place.getRadius();
         this.type = new HashSet<>();
         this.type.addAll(Arrays.asList(type));
         this.fileID = place.getFileID();
