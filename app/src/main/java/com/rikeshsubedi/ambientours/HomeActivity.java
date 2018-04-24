@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                               "Clough U.L.C",
                               "Scheller College of Business"};
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listOfPOI);
-        listViewOfPOI = (ListView)findViewById(R.id.listOfPOI);
+        listViewOfPOI = findViewById(R.id.listOfPOI);
         listViewOfPOI.setAdapter(adapter);
         /* Below we want to query for nearby places using Google Places API. */
 
@@ -124,15 +124,11 @@ public class HomeActivity extends AppCompatActivity {
     private void updateLocation() {
         if (locationTracker.hasLocation()) {
             location = locationTracker.getLocation();
-
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
         } else {
             location = locationTracker.getPossiblyStaleLocation();
-
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
         }
+        longitude = location.getLongitude();
+        latitude = location.getLatitude();
         if (poiMan != null) {
             poiMan.update(location);
             availablePOIs = poiMan.getPrimedPOIs();
@@ -142,16 +138,34 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         locationTracker.stop();
-        localSounds.stop();
-        music.stop();
+        if (localSounds != null) localSounds.stop();
+        if (music != null) music.stop();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onPause() {
+        if (localSounds != null) {
+            localSounds.reset();
+            localSounds.pause();
+        }
+        if (music != null) music.pause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if(localSounds != null) localSounds.start();
+        if(music != null) music.start();
+
+        super.onResume();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         locationTracker.stop();
-        localSounds.stop();
-        music.stop();
+        if (localSounds != null) localSounds.stop();
+        if (music != null) music.stop();
         finish();
         return true;
     }

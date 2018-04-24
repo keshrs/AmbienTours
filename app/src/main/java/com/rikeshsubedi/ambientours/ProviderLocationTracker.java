@@ -116,6 +116,9 @@ public class ProviderLocationTracker implements LocationListener, LocationTracke
         } catch (SecurityException e) {
             newLocation = new Location(provider);
         }
+        if (newLocation == null) {
+            newLocation = new Location(provider);
+        }
         return newLocation;
     }
 
