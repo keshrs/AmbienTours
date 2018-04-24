@@ -22,7 +22,7 @@ public enum OurPlaces {
      * @param filename id for the sound file associated with this location.
      * @param latitude of this place.
      * @param longitude of this place.
-     * @param radius of detection for user interaction.
+     * @param radius of detection for user interaction, in meters.
      */
     OurPlaces(int filename, double latitude, double longitude, int radius) {
         this.fileID = filename;
