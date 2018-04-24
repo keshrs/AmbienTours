@@ -8,14 +8,15 @@ import android.util.Log;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * @author Rikesh Subedi
  * @version 1.0
  */
 public class PointOfInterestManager {
-    static private PriorityQueue<PointOfInterest> primedPOIs;
-    static private HashSet<PointOfInterest> visitedPOIs = new HashSet<>();
+    static private PriorityQueue<OurPlaces> primedPOIs;
+    static private HashSet<OurPlaces> visitedPOIs = new HashSet<>();
 
     private LinkedList<String> requestQueue;    // For use with Google Places API
 
@@ -44,6 +45,7 @@ public class PointOfInterestManager {
             isCommerce = extras.getBoolean("commerce");
             isTourist = extras.getBoolean("tourist");
         }
+        primedPOIs = new PriorityQueue<>();
         update(location);
     }
 
@@ -63,6 +65,36 @@ public class PointOfInterestManager {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
 
+        boolean canAdd = false;
+        Set<LocationType> placeType;
+        for (OurPlaces place : OurPlaces.values()) {
+            if (place.isWithinRange(location)) {
+                placeType = place.getType();
+                if (isArt) {
+                    canAdd = placeType.contains(LocationType.ART);
+                }
+                if (isEntertainment) {
+                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                }
+                if (isHistory) {
+                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                }
+                if (isNature) {
+                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                }
+                if (isCommerce) {
+                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                }
+                if (isTourist) {
+                    canAdd = canAdd || placeType.contains(LocationType.ART);
+                }
+
+                if (canAdd) {
+                    primedPOIs.add(place);
+                }
+                canAdd = false;
+            }
+        }
 
         /* In current implementation, Places API is not used and neither is the request queue */
         buildRequestQueue();
@@ -161,11 +193,11 @@ public class PointOfInterestManager {
     }
 
 
-    public static PriorityQueue<PointOfInterest> getPrimedPOIs() {
+    public static PriorityQueue<OurPlaces> getPrimedPOIs() {
         return primedPOIs;
     }
 
-    public static HashSet<PointOfInterest> getVisitedPOIs() {
+    public static HashSet<OurPlaces> getVisitedPOIs() {
         return  visitedPOIs;
     }
 

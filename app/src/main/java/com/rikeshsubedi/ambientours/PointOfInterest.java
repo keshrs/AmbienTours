@@ -26,6 +26,9 @@ public class PointOfInterest {
     public int getLocationSoundID() {
         return fileID;
     }
+    public Set<LocationType> getType() {
+        return type;
+    }
 
 
     PointOfInterest() {
@@ -35,13 +38,12 @@ public class PointOfInterest {
         this.fileID = place.getFileID();
     }
 
-    PointOfInterest(OurPlaces place, LocationType... type) {
+    PointOfInterest(OurPlaces place) {
         this.place = place;
         this.radius = place.getRadius();
         this.latitude = place.getLatitude();
         this.longitude = place.getLongitude();
-        this.type = new HashSet<>();
-        this.type.addAll(Arrays.asList(type));
+        this.type = place.getType();
         this.fileID = place.getFileID();
     }
 
