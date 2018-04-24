@@ -14,7 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +32,12 @@ public class HomeActivity extends AppCompatActivity {
     double longitude;
     double latitude;
 
+    ListView listViewOfPOI;
+
     final int REQUEST_CODE_FINE_GPS = 19;
 
     PointOfInterestManager poiMan;
+
     PriorityQueue<OurPlaces> availablePOIs;
 
     private final int maxVolume = 100;
@@ -92,6 +98,21 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        String[] listOfPOI = {"Tech Tower",
+                              "Highland Bakery",
+                              "Weber SSGT",
+                              "Skiles: LMC & MATH",
+                              "Tech Green",
+                              "GT Student Center",
+                              "Ferst Center",
+                              "College of Design",
+                              "Tech Square Research Building",
+                              "Clough U.L.C",
+                              "Scheller College of Business"};
+        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listOfPOI);
+        listViewOfPOI = (ListView)findViewById(R.id.listOfPOI);
+        listViewOfPOI.setAdapter(adapter);
         /* Below we want to query for nearby places using Google Places API. */
 
 
